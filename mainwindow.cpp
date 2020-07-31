@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->closeBtn->setGeometry(width() - 40, 0, 30, 30);
     ui->menu->setGeometry(-ui->menu->width(), ui->menu->y(), ui->menu->width(), height());
-    ui->webEngineView->setHtml("Welcome");
+    ui->webEngineView->load(QUrl("file:///pages/welcome.html"));
 
     connect(ui->searchBox->word, SIGNAL(fetchFinished()), this, SLOT(onFetchResultCallback()));
     connect(ui->closeBtn, SIGNAL(onCloseBtnClicked()), this, SLOT(onExit()));

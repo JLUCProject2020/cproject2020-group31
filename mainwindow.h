@@ -6,6 +6,7 @@
 #include <QtWebEngineWidgets/QWebEngineView>
 #include <QWebEngineSettings>
 #include <QPropertyAnimation>
+#include <QWebEnginePage>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
