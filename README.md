@@ -1,0 +1,1 @@
+# mojidict-qt5
