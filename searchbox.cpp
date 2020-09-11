@@ -3,6 +3,8 @@
 #include "mainwindow.h"
 
 extern MainWindow* wndMain;
+extern DictIndex* dict;
+extern unsigned int MODE;
 SearchBox::SearchBox(QWidget *parent) : QWidget(parent)
 {
     collapsed = true;
@@ -67,7 +69,12 @@ void SearchBox::clearCandidates()
 void SearchBox::addCandidate(QString title, QString excerpt)
 {
     SearchItem* i = new SearchItem(this, candidates.size());
-    i->setText("<b>" + title + "</b><br/>" + excerpt.left(30) + "...");
+    QString text;
+    if (excerpt.size() > 30)
+        text = "<b>" + title + "</b><br/>" + excerpt.left(30) + "...";
+    else
+        text = "<b>" + title + "</b><br/>" + excerpt;
+    i->setText(text);
     i->setGeometry(0, 40 + i->getId() * 50, width(), 50);
     connect(i, SIGNAL(clickItem(QString)), this, SLOT(onItemSelect(QString)));
     candidates.push_back(i);
@@ -98,7 +105,10 @@ void SearchBox::onSearchResultCallback()
 void SearchBox::onItemSelect(QString id)
 {
     emit collapse();
-    emit startFetch(QString::fromStdString(search->word_ids[id.toInt()]));
+    if (MODE == 0)
+        emit startFetch(QString::fromStdString(search->word_ids[id.toInt()]));
+    else
+        emit startFetch(QString::fromStdString(off_res->at(id.toInt()).value));
 }
 
 void SearchBox::paintEvent(QPaintEvent *e)
@@ -129,4 +139,27 @@ SearchBox::~SearchBox()
 {
     searchThread->quit();
     searchThread->wait();
+}
+
+void SearchBox::onOfflineSearch(QString key)
+{
+    qDebug() << "Searching index for " << key << endl;
+    off_res = new vector<kv>;
+    *off_res = dict->search(key.toStdString());
+    qDebug() << off_res->size() << " items found."<< endl;
+    off_res->resize(10);
+    clearCandidates();
+    for (auto item: *off_res)
+    {
+        if (item.key != "")
+        {
+            addCandidate(QString::fromStdString(item.key), "");
+            qDebug() << "Added candidate " << QString::fromStdString(item.key) << endl;
+        }
+    }
+    expand();
+    for (auto i: candidates)
+    {
+        i->show();
+    }
 }

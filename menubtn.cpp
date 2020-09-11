@@ -5,7 +5,7 @@ MenuBtn::MenuBtn(QWidget* parent)
     :QLabel(parent)
 {
     pic = new QPixmap;
-    bool status = pic->load("pics/menu-btn.png");
+    bool status = pic->load(":/icons/res/pics/menu-btn.png");
     setAlignment(Qt::AlignCenter);
 
     if (status)

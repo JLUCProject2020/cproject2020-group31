@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/pages">
+        <file>res/pages/welcome/welcome.html</file>
+    </qresource>
+    <qresource prefix="/styles"/>
+</RCC>

@@ -9,7 +9,6 @@ Menu::Menu(QWidget *parent) : QWidget(parent)
     animation->setDuration(750);
     animation->setEasingCurve(QEasingCurve::InOutExpo);
 }
-
 void Menu::item_selected(unsigned char id)
 {
     selected = id;
@@ -24,8 +23,16 @@ void Menu::item_selected(unsigned char id)
             (*itr)->setSelected(false);
         }
     }
+    if (id == 0)
+    {
+        emit toOnlineMode();
+    }
+    else
+    {
+        emit toOfflineMode();
+    }
 }
-void Menu::addBtn(QString title)
+void Menu::addBtn(QString title)//向左侧目录栏添加新按钮 按下事件发出信号select(id)
 {
     MenuItem* item = new MenuItem(this, buttons.size());
     buttons.push_back(item);

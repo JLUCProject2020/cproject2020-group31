@@ -27,7 +27,7 @@ void titlebar::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
-void titlebar::mouseMoveEvent(QMouseEvent *event)
+void titlebar::mouseMoveEvent(QMouseEvent *event)  //移动窗体距离为鼠标移动距离就可以做到鼠标始终对应窗体上某一点
 {
     if(isDrag)
     {

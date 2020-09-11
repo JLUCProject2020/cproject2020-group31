@@ -23,6 +23,9 @@ public:
 private slots:
     void onFetchResultCallback();
     void onExit();
+    void onlineMode();
+    void offlineMode();
+    void onOfflineShow(QString filename);
 private:
     Ui::MainWindow *ui;
 };

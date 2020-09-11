@@ -7,7 +7,7 @@ MenuItem::MenuItem(QWidget* parent, unsigned char id) :QLabel(parent)
     setScaledContents(true);
     selected = false;
     this->id = id;
-    setFont(QFont("Microsoft YaHei UI", 10));
+    setFont(QFont("思源黑体 CN Light", 10));
     setStyleSheet("border-style: solid; border-width: 2px;border-color: rgba(255, 255, 255, 0);background-color:rgba(255, 255, 255, 0); color: white;");
 }
 

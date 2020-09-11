@@ -5,7 +5,7 @@ WindowControl::WindowControl(QWidget* parent)
     :QLabel(parent)
 {
     image = new QPixmap;
-    bool success = image->load("pics/close.png");
+    bool success = image->load(":/icons/res/pics/close.png");
     if (success)
     {
         qDebug() << "Loaded image close.png successfully." << endl;

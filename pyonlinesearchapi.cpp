@@ -132,17 +132,13 @@ void MOJiDictSearch::search(QString content)
     Py_XDECREF(pyListWords);
 }
 
-void MOJiDictSearch::thread_wait()
+void MOJiDictSearch::thread_wait()  //线程常驻
 {
     while(1)
     {
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
     }
 }
-
-
-
-
 
 
 MOJiDictWord::MOJiDictWord(MOJiDictBasicInfo* pinfo)
@@ -171,7 +167,7 @@ void MOJiDictWord::fetch(QString wordid)
     Py_XDECREF(pyTupleReturn);
 }
 
-void MOJiDictWord::thread_wait()
+void MOJiDictWord::thread_wait()  //线程常驻
 {
     while(1)
     {

@@ -8,6 +8,7 @@
 #include "mainwindow.h"
 
 extern MainWindow* wndMain;
+
 class titlebar : public QLabel
 {
     Q_OBJECT

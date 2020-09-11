@@ -2,17 +2,19 @@
 #define SEARCHBOX_H
 
 #include <QWidget>
-#include "textbox.h"
-#include "searchitem.h"
 #include <QVector>
-#include "pyonlinesearchapi.h"
 #include <QTimer>
 #include <QThread>
 #include <string>
+#include "dict.h"
+#include "pyonlinesearchapi.h"
+#include "textbox.h"
+#include "searchitem.h"
 
 
 extern MOJiDictBasicInfo* pyInfo;
 extern PyObject* pyModuleApi;
+
 class SearchBox : public QWidget
 {
     Q_OBJECT
@@ -26,6 +28,7 @@ class SearchBox : public QWidget
 public:
     MOJiDictSearch* search;
     MOJiDictWord* word;
+    vector<kv>* off_res;
     explicit SearchBox(QWidget *parent = nullptr);
     void clearCandidates();
     void addCandidate(QString title, QString excerpt);
@@ -41,6 +44,7 @@ private slots:
     void onTimerTick();
     void collapse();
     void expand();
+    void onOfflineSearch(QString key);
 };
 
 #endif // SEARCHBOX_H

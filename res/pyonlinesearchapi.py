@@ -25,7 +25,7 @@ def fetch_word(fetchurl, postdata, wordid):
     def to_html(dictinfo):
         title, pron, tone, term_info = dictinfo
         try:
-            cssfile  = open("style.css", encoding='utf-8')
+            cssfile  = open("styles/style.css", encoding='utf-8')
             css_text = cssfile.read()
             cssfile.close()
         except:

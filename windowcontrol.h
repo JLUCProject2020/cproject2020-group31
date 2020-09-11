@@ -9,6 +9,7 @@
 
 extern QApplication* appMain;
 extern MainWindow* wndMain;
+
 class WindowControl : public QLabel
 {
     Q_OBJECT
